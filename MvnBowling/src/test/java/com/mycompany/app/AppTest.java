@@ -1,5 +1,6 @@
 package com.mycompany.app;
 
+import bowlingRefactor.Player;
 import java.io.FileNotFoundException;
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -8,203 +9,190 @@ import junit.framework.TestSuite;
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-    extends TestCase
-{
+public class AppTest
+        extends TestCase {
+
     /**
      * Create the test case
      *
      * @param testName name of the test case
      */
-    public AppTest( String testName )
-    {
-        super( testName );
+    public AppTest(String testName) {
+        super(testName);
     }
 
     /**
      * @return the suite of tests being tested
      */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
+    public static Test suite() {
+        return new TestSuite(AppTest.class);
     }
 
     /**
      * Rigourous Test :-)
      */
-    public void testApp1() throws FileNotFoundException
-    {
-        System.out.println("computeScoreFor");
+    public void testApp1() throws FileNotFoundException {
+        System.out.println("computeScoreFor1");
+        Player p = new Player("game1.txt");
+        int result = p.play();
 
-        Bowling instance = new Bowling();
-        int[] rolls = instance.readFile("game1.txt");
         int expResult = 20;
-        int result = instance.computeScoreFor(rolls);
         assertEquals(expResult, result);
 
     }
-    public void testApp3() throws FileNotFoundException {
-        System.out.println("computeScoreFor");
 
-        Bowling instance = new Bowling();
-        int[] rolls = instance.readFile("game3.txt");
+    public void testApp2() throws FileNotFoundException {
+        System.out.println("computeScoreFor2");
+        Player p = new Player("game2.txt");
+        int result = p.play();
+        int expResult = 0;
+        assertEquals(expResult, result);
+
+    }
+
+    public void testApp3() throws FileNotFoundException {
+        System.out.println("computeScoreFor3");
+        Player p = new Player("game3.txt");
+        int result = p.play();
         int expResult = 300;
-        int result = instance.computeScoreFor(rolls);
         assertEquals(expResult, result);
 
     }
 
     public void testApp4() throws FileNotFoundException {
-        System.out.println("computeScoreFor");
+        System.out.println("computeScoreFor4");
 
-        Bowling instance = new Bowling();
-        int[] rolls = instance.readFile("game4.txt");
+        Player p = new Player("game4.txt");
+        int result = p.play();
         int expResult = 16;
-        int result = instance.computeScoreFor(rolls);
         assertEquals(expResult, result);
 
     }
 
-    
     public void testApp5() throws FileNotFoundException {
-        System.out.println("computeScoreFor");
+        System.out.println("computeScoreFor5");
 
-        Bowling instance = new Bowling();
-        int[] rolls = instance.readFile("game5.txt");
+        Player p = new Player("game5.txt");
+        int result = p.play();
         int expResult = 24;
-        int result = instance.computeScoreFor(rolls);
         assertEquals(expResult, result);
 
     }
 
     public void testApp6() throws FileNotFoundException {
-        System.out.println("computeScoreFor");
+        System.out.println("computeScoreFor6");
 
-        Bowling instance = new Bowling();
-        int[] rolls = instance.readFile("game6.txt");
+        Player p = new Player("game6.txt");
+        int result = p.play();
         int expResult = 69;
-        int result = instance.computeScoreFor(rolls);
         assertEquals(expResult, result);
 
     }
 
     public void testApp7() throws FileNotFoundException {
-        System.out.println("computeScoreFor");
+        System.out.println("computeScoreFor7");
 
-        Bowling instance = new Bowling();
-        int[] rolls = instance.readFile("game7.txt");
+        Player p = new Player("game7.txt");
+        int result = p.play();
         int expResult = 79;
-        int result = instance.computeScoreFor(rolls);
         assertEquals(expResult, result);
 
     }
 
     public void testApp8() throws FileNotFoundException {
-        System.out.println("computeScoreFor");
+        System.out.println("computeScoreFor8");
 
-        Bowling instance = new Bowling();
-        int[] rolls = instance.readFile("game8.txt");
+        Player p = new Player("game8.txt");
+        int result = p.play();
         int expResult = 112;
-        int result = instance.computeScoreFor(rolls);
         assertEquals(expResult, result);
 
     }
 
-     public void testApp9() throws FileNotFoundException {
-        System.out.println("computeScoreFor");
+    public void testApp9() throws FileNotFoundException {
+        System.out.println("computeScoreFor9");
 
-        Bowling instance = new Bowling();
-        int[] rolls = instance.readFile("game9.txt");
+        Player p = new Player("game9.txt");
+        int result = p.play();
         int expResult = 104;
-        int result = instance.computeScoreFor(rolls);
         assertEquals(expResult, result);
 
     }
 
     public void testApp10() throws FileNotFoundException {
-        System.out.println("computeScoreFor");
+        System.out.println("computeScoreFor10");
 
-        Bowling instance = new Bowling();
-        int[] rolls = instance.readFile("game10.txt");
+        Player p = new Player("game10.txt");
+        int result = p.play();
         int expResult = 215;
-        int result = instance.computeScoreFor(rolls);
         assertEquals(expResult, result);
 
     }
 
     public void testApp11() throws FileNotFoundException {
-        System.out.println("computeScoreFor");
+        System.out.println("computeScoreFor11");
 
-        Bowling instance = new Bowling();
-        int[] rolls = instance.readFile("game11.txt");
+        Player p = new Player("game11.txt");
+        int result = p.play();
         int expResult = 243;
-        int result = instance.computeScoreFor(rolls);
         assertEquals(expResult, result);
 
     }
 
-     public void testApp12() throws FileNotFoundException {
-        System.out.println("computeScoreFor");
+    public void testApp12() throws FileNotFoundException {
+        System.out.println("computeScoreFor12");
 
-        Bowling instance = new Bowling();
-        int[] rolls = instance.readFile("game12.txt");
+        Player p = new Player("game12.txt");
+        int result = p.play();
         int expResult = 201;
-        int result = instance.computeScoreFor(rolls);
         assertEquals(expResult, result);
 
     }
 
     public void testApp13() throws FileNotFoundException {
-        System.out.println("computeScoreFor");
-
-        Bowling instance = new Bowling();
-        int[] rolls = instance.readFile("game13.txt");
+        System.out.println("computeScoreFor13");
+        Player p = new Player("game13.txt");
+        int result = p.play();
         int expResult = 143;
-        int result = instance.computeScoreFor(rolls);
         assertEquals(expResult, result);
 
     }
 
-   public void testApp14() throws FileNotFoundException {
-        System.out.println("computeScoreFor");
+    public void testApp14() throws FileNotFoundException {
+        System.out.println("computeScoreFor14");
 
-        Bowling instance = new Bowling();
-        int[] rolls = instance.readFile("game14.txt");
+        Player p = new Player("game14.txt");
+        int result = p.play();
         int expResult = 115;
-        int result = instance.computeScoreFor(rolls);
         assertEquals(expResult, result);
 
     }
 
-     public void testApp15() throws FileNotFoundException {
-        System.out.println("computeScoreFor");
+    public void testApp15() throws FileNotFoundException {
+        System.out.println("computeScoreFor15");
 
-        Bowling instance = new Bowling();
-        int[] rolls = instance.readFile("game15.txt");
+        Player p = new Player("game15.txt");
+        int result = p.play();
         int expResult = 159;
-        int result = instance.computeScoreFor(rolls);
         assertEquals(expResult, result);
 
     }
 
     public void testApp16() throws FileNotFoundException {
-        System.out.println("computeScoreFor");
+        System.out.println("computeScoreFor16");
 
-        Bowling instance = new Bowling();
-        int[] rolls = instance.readFile("game16.txt");
+        Player p = new Player("game16.txt");
+        int result = p.play();
         int expResult = 135;
-        int result = instance.computeScoreFor(rolls);
         assertEquals(expResult, result);
 
     }
 
     public void testApp17() throws FileNotFoundException {
-        System.out.println("computeScoreFor");
-
-        Bowling instance = new Bowling();
-        int[] rolls = instance.readFile("game17.txt");
+        System.out.println("computeScoreFor17");
+        Player p = new Player("game17.txt");
+        int result = p.play();
         int expResult = 77;
-        int result = instance.computeScoreFor(rolls);
         assertEquals(expResult, result);
 
     }

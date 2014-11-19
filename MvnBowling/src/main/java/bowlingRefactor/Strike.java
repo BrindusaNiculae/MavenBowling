@@ -23,7 +23,7 @@ public class Strike extends Frames {
 
     @Override
     public void calculate(int value1, int value2) {
-        value = value1 + value2 + extraValue1 + extraValue2;
+        value = value1 + value2 + extraValue1;
         this.setValue(value);
     }
 }
