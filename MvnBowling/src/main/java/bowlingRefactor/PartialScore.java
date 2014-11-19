@@ -9,5 +9,14 @@ package bowlingRefactor;
  *
  * @author Brindu
  */
-public class numberOfPins {
+public class PartialScore {
+    private int value;
+    
+    public void setValue(int value){
+        this.value = value;
+    }
+    
+    public int getValue(){
+        return this.value;
+    }
 }

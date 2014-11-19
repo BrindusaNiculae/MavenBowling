@@ -7,7 +7,7 @@ spare or a strike). The total score is calculated as the sum of partial scores
 for each frame.
 
 The maximum number of pins a player can knock down in a frame is 10. Depending
-on the number of pins they knock down, there are 3 types of throws, each leading
+on the number of pins they knock down, there are 3 types of frames, each leading
 to a different way to calculate the partial score for that frame:
     ->the STRIKE: 
         -the player knocks down all 10 pins in the first roll;

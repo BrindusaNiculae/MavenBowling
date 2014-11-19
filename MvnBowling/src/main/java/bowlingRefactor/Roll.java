@@ -9,12 +9,18 @@ package bowlingRefactor;
  *
  * @author Brindu
  */
-public class Open extends Frames {
-
-    @Override
-    public void calculate(int value1, int value2) {
-       value = value1 + value2;
-       this.setValue(value);
+public class Roll {
+    private int value;
+    
+    Roll(){
+        value = -1;
     }
-
+    
+    public void setValue(int value){
+        this.value = value;
+    }
+    
+    public int getValue(){
+        return this.value;
+    }
 }

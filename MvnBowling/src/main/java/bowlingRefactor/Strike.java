@@ -9,12 +9,21 @@ package bowlingRefactor;
  *
  * @author Brindu
  */
-public class Strike implements typeOfThrow{
+public class Strike extends Frames {
+
+    private int extraValue1, extraValue2;
+
+    public void setExtraValue1(int value) {
+        extraValue1 = value;
+    }
+
+    public void setExtraValue2(int value) {
+        extraValue2 = value;
+    }
 
     @Override
-    public void wayToCalculate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void calculate(int value1, int value2) {
+        value = value1 + value2 + extraValue1 + extraValue2;
+        this.setValue(value);
     }
 }
-    
-

@@ -9,11 +9,18 @@ package bowlingRefactor;
  *
  * @author Brindu
  */
-public class Spare implements typeOfThrow{
+public class Spare extends Frames {
+
+    private int extraValue;
+
+    public void setExtraValue(int value) {
+        extraValue = value;
+    }
 
     @Override
-    public void wayToCalculate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void calculate(int value1, int value2) {
+        value = value1 + value2 + extraValue;
+        this.setValue(value);
     }
-    
+
 }

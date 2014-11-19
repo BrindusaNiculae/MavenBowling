@@ -1,5 +1,6 @@
 package com.mycompany.app;
 
+import bowlingRefactor.Player;
 import java.io.FileNotFoundException;
 
 /**
@@ -9,15 +10,24 @@ import java.io.FileNotFoundException;
 public class App {
 
     public static void main(String[] args) throws FileNotFoundException {
-        int[] rolls;
+        /*
+         int[] rolls;
         
+         for (int i = 1; i <= 17; i++) {
+         String filename = "game" + (i) + ".txt";
+         Bowling ex2 = new Bowling();
+         rolls = ex2.readFile(filename);
+         ex2.setGameNr(i);
+         int rezult = ex2.computeScoreFor(rolls);
+         System.out.println("-Scorul final pt fisierul " + i
+         + " :" + rezult);
+         }
+         */
         for (int i = 1; i <= 17; i++) {
             String filename = "game" + (i) + ".txt";
-            Bowling ex2 = new Bowling();
-            rolls = ex2.readFile(filename);
-            ex2.setGameNr(i);
-            int rezult = ex2.computeScoreFor(rolls);
-            System.out.println("-Scorul final pt fisierul " + i
+            Player p = new Player(filename);
+            int rezult = p.play();
+            System.out.println("Scor final pt fisierul " + i
                     + " :" + rezult);
         }
     }

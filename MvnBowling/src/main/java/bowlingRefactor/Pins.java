@@ -5,10 +5,18 @@
  */
 package bowlingRefactor;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Brindu
  */
-public interface typeOfThrow {
-    public void wayToCalculate();
+public class Pins {
+    public boolean hasPins(String filename, Scanner s){
+        return s.hasNextInt();
+    }
+    
+    public int knockDown(String filename, Scanner s){
+        return s.nextInt();
+    }
 }
