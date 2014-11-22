@@ -13,13 +13,17 @@ import java.io.FileNotFoundException;
  */
 public class Player {
 
-    private Game game;
+    private final Game game;
 
     public Player(String filename) throws FileNotFoundException {
         game = new Game(filename);
     }
 
-    public int play() {
-        return game.startGame();
+    public void play() {
+        game.startGame();
+    }
+    
+    public int getScore(){
+        return game.getFinalScore();
     }
 }

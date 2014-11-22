@@ -20,9 +20,11 @@ public class Game {
     private Frames frame;
     private PartialScore partialScore;
     private Score score;
-    public String filename;
-    public Scanner scanner;
-    private int frameNr;
+    private String filename;
+    private Scanner scanner;
+    private boolean readR1;
+    private boolean readR2; 
+    private boolean readNR; 
 
     Game(String filename) throws FileNotFoundException {
         pins = new Pins();
@@ -33,17 +35,22 @@ public class Game {
         partialScore = new PartialScore();
         score = new Score();
         scanner = new Scanner(new File(filename));
-        frameNr = 0;
+        readR1 = true;
+        readR2 = true;
+        readNR = true;
+    }
+    
+    private void readRoll(Roll roll, boolean readable){
+        if (pins.hasPins(filename, scanner)  && readable) {
+                roll.setValue(pins.knockDown(filename, scanner));
+            }
+        else roll.setValue(-1);
     }
 
-    public int startGame() {
-        boolean readR1 = true;
-        boolean readR2 = true;
-        boolean readNR = true;
+    public void startGame() {
+        
         while (pins.hasPins(filename, scanner)) {
-            if (readR1) {
-                roll1.setValue(pins.knockDown(filename, scanner));
-            }
+            readRoll(roll1, readR1);
             if (pins.hasPins(filename, scanner) && readR2) {
                 roll2.setValue(pins.knockDown(filename, scanner));
             } else if (readR2) {
@@ -57,38 +64,39 @@ public class Game {
                     readR1 = true;
                     readR2 = true;
                     readNR = true;
-                } /*SPARE*/ else if (roll2.getValue() != 0 && roll1.getValue() + roll2.getValue() == 10) {
-                    frame = new Strike();
-                    nextRoll1.setValue(pins.knockDown(filename, scanner));
-                    frame.setExtraValue1(nextRoll1.getValue());
-                    frame.calculate(roll1.getValue(), roll2.getValue());
-
-                    roll1.setValue(nextRoll1.getValue());
-                    roll2.setValue(-1);
-                    nextRoll1.setValue(-1);
-                    readR1 = false;
-                    readR2 = true;
-                    readNR = true;
-                } /*STRIKE*/ else {
-                    score.setPerfect();
-                    frame = new Strike();
+                } /*SPARE of STRIKE*/ else {
+                    frame = new StrikeOrSpare();
                     if (readNR && pins.hasPins(filename, scanner)) {
                         nextRoll1.setValue(pins.knockDown(filename, scanner));
                     }
-                    frame.setExtraValue1(nextRoll1.getValue());
+                    frame.setExtraValue(nextRoll1.getValue());
                     frame.calculate(roll1.getValue(), roll2.getValue());
 
-                    roll1.setValue(roll2.getValue());
-                    roll2.setValue(nextRoll1.getValue());
-                    readR1 = false;
-                    readR2 = false;
+                    /*SPARE*/
+                    if (roll2.getValue() != 0 && roll1.getValue() + roll2.getValue() == 10) {
+                        roll1.setValue(nextRoll1.getValue());
+                        roll2.setValue(-1);
+                        nextRoll1.setValue(-1);
+                        readR2 = true;
+                        readNR = true;
+                    } /*STRIKE*/ else {
+                        score.setPerfect();
 
+                        roll1.setValue(roll2.getValue());
+                        roll2.setValue(nextRoll1.getValue());
+
+                        readR2 = false;
+                    }
+                    readR1 = false;
                 }
                 partialScore.setValue(frame.getValue());
                 score.calculate(partialScore.getValue());
 
             }
         }
+    }
+
+    public int getFinalScore() {
         return score.getScore();
     }
 

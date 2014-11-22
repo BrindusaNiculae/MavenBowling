@@ -12,6 +12,7 @@ import java.util.Scanner;
  * @author Brindu
  */
 public class Pins {
+    
     public boolean hasPins(String filename, Scanner s){
         return s.hasNextInt();
     }

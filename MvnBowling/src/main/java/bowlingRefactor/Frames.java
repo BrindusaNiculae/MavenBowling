@@ -11,7 +11,7 @@ package bowlingRefactor;
  */
 public abstract class Frames {
 
-    public int value;
+    protected int value;
 
     public void setValue(int value) {
         this.value = value;
@@ -28,10 +28,7 @@ public abstract class Frames {
         this.setValue(0);
     }
 
-    public void setExtraValue1(int value) {
-    }
-
-    public void setExtraValue2(int value) {
+    public void setExtraValue(int value) {
     }
 
 }
