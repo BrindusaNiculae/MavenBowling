@@ -91,18 +91,26 @@ public class Game {
 
     private void computeForSpare() {
         frame.calculate(roll1.getValue(), roll2.getValue());
-        roll1.setValue(nextRoll1.getValue());
-        roll2.setValue(-1);
-        nextRoll1.setValue(-1);
+        updateValuesForSpare();
         setFlagsForSpare();
     }
 
-    private void computeForStrike() {
-        frame.calculate(roll1.getValue(), roll2.getValue());
+    private void computeForStrike() {        
         score.setPerfect();
+        frame.calculate(roll1.getValue(), roll2.getValue());
+        updateValuesForStrike();
+        setFlagsForStrike();
+    }
+
+    private void updateValuesForSpare() {
+        roll1.setValue(nextRoll1.getValue());
+        roll2.setValue(-1);
+        nextRoll1.setValue(-1);
+    }
+
+    private void updateValuesForStrike() {
         roll1.setValue(roll2.getValue());
         roll2.setValue(nextRoll1.getValue());
-        setFlagsForStrike();
     }
 
     private void setFlagsForOpen() {

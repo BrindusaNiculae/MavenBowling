@@ -25,7 +25,6 @@ public abstract class Frames {
         /*In functie de tipul frame-ului, value ca avea o valoare care depinde
          -         de value1 si value2
          -         */
-        this.setValue(0);
     }
 
     public void setExtraValue(int value) {
