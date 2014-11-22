@@ -23,4 +23,9 @@ public class StrikeOrSpare extends Frames {
         value = value1 + value2 + extraValue;
         this.setValue(value);
     }
+    
+    @Override
+    public String getFrameType(){
+        return "STRIKE||SPARE";
+    }
 }

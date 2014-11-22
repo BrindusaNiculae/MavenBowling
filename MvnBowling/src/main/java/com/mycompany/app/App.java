@@ -14,7 +14,8 @@ public class App {
         for (int i = 1; i <= 17; i++) {
             String filename = "game" + (i) + ".txt";
             Player p = new Player(filename);
-            int rezult = p.play();
+            p.play();
+            int rezult = p.getScore();
             System.out.println("Scor final pt fisierul " + i
                     + " :" + rezult);
         }

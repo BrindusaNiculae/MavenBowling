@@ -16,5 +16,10 @@ public class Open extends Frames {
        value = value1 + value2;
        this.setValue(value);
     }
+    
+    @Override
+    public String getFrameType(){
+        return "OPEN";
+    }
 
 }

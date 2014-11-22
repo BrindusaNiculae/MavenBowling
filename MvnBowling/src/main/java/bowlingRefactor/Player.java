@@ -24,6 +24,6 @@ public class Player {
     }
     
     public int getScore(){
-        return game.getFinalScore();
+        return game.getFinalScore().getScore();
     }
 }

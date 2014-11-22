@@ -34,8 +34,9 @@ public class AppTest
     public void testApp1() throws FileNotFoundException {
         System.out.println("computeScoreFor1");
         Player p = new Player("game1.txt");
-        int result = p.play();
+        p.play();
 
+        int result = p.getScore();
         int expResult = 20;
         assertEquals(expResult, result);
 
@@ -44,7 +45,9 @@ public class AppTest
     public void testApp2() throws FileNotFoundException {
         System.out.println("computeScoreFor2");
         Player p = new Player("game2.txt");
-        int result = p.play();
+        p.play();
+
+        int result = p.getScore();
         int expResult = 0;
         assertEquals(expResult, result);
 
@@ -53,7 +56,9 @@ public class AppTest
     public void testApp3() throws FileNotFoundException {
         System.out.println("computeScoreFor3");
         Player p = new Player("game3.txt");
-        int result = p.play();
+        p.play();
+
+        int result = p.getScore();
         int expResult = 300;
         assertEquals(expResult, result);
 
@@ -63,7 +68,9 @@ public class AppTest
         System.out.println("computeScoreFor4");
 
         Player p = new Player("game4.txt");
-        int result = p.play();
+        p.play();
+
+        int result = p.getScore();
         int expResult = 16;
         assertEquals(expResult, result);
 
@@ -73,7 +80,9 @@ public class AppTest
         System.out.println("computeScoreFor5");
 
         Player p = new Player("game5.txt");
-        int result = p.play();
+        p.play();
+
+        int result = p.getScore();
         int expResult = 24;
         assertEquals(expResult, result);
 
@@ -83,7 +92,9 @@ public class AppTest
         System.out.println("computeScoreFor6");
 
         Player p = new Player("game6.txt");
-        int result = p.play();
+        p.play();
+
+        int result = p.getScore();
         int expResult = 69;
         assertEquals(expResult, result);
 
@@ -93,7 +104,9 @@ public class AppTest
         System.out.println("computeScoreFor7");
 
         Player p = new Player("game7.txt");
-        int result = p.play();
+        p.play();
+
+        int result = p.getScore();
         int expResult = 79;
         assertEquals(expResult, result);
 
@@ -103,7 +116,9 @@ public class AppTest
         System.out.println("computeScoreFor8");
 
         Player p = new Player("game8.txt");
-        int result = p.play();
+        p.play();
+
+        int result = p.getScore();
         int expResult = 112;
         assertEquals(expResult, result);
 
@@ -113,7 +128,9 @@ public class AppTest
         System.out.println("computeScoreFor9");
 
         Player p = new Player("game9.txt");
-        int result = p.play();
+        p.play();
+
+        int result = p.getScore();
         int expResult = 104;
         assertEquals(expResult, result);
 
@@ -123,7 +140,9 @@ public class AppTest
         System.out.println("computeScoreFor10");
 
         Player p = new Player("game10.txt");
-        int result = p.play();
+        p.play();
+
+        int result = p.getScore();
         int expResult = 215;
         assertEquals(expResult, result);
 
@@ -133,7 +152,9 @@ public class AppTest
         System.out.println("computeScoreFor11");
 
         Player p = new Player("game11.txt");
-        int result = p.play();
+        p.play();
+
+        int result = p.getScore();
         int expResult = 243;
         assertEquals(expResult, result);
 
@@ -143,7 +164,9 @@ public class AppTest
         System.out.println("computeScoreFor12");
 
         Player p = new Player("game12.txt");
-        int result = p.play();
+        p.play();
+
+        int result = p.getScore();
         int expResult = 201;
         assertEquals(expResult, result);
 
@@ -152,7 +175,9 @@ public class AppTest
     public void testApp13() throws FileNotFoundException {
         System.out.println("computeScoreFor13");
         Player p = new Player("game13.txt");
-        int result = p.play();
+        p.play();
+
+        int result = p.getScore();
         int expResult = 143;
         assertEquals(expResult, result);
 
@@ -162,7 +187,9 @@ public class AppTest
         System.out.println("computeScoreFor14");
 
         Player p = new Player("game14.txt");
-        int result = p.play();
+        p.play();
+
+        int result = p.getScore();
         int expResult = 115;
         assertEquals(expResult, result);
 
@@ -172,7 +199,8 @@ public class AppTest
         System.out.println("computeScoreFor15");
 
         Player p = new Player("game15.txt");
-        int result = p.play();
+        p.play();
+        int result = p.getScore();
         int expResult = 159;
         assertEquals(expResult, result);
 
@@ -182,7 +210,8 @@ public class AppTest
         System.out.println("computeScoreFor16");
 
         Player p = new Player("game16.txt");
-        int result = p.play();
+        p.play();
+        int result = p.getScore();
         int expResult = 135;
         assertEquals(expResult, result);
 
@@ -191,7 +220,8 @@ public class AppTest
     public void testApp17() throws FileNotFoundException {
         System.out.println("computeScoreFor17");
         Player p = new Player("game17.txt");
-        int result = p.play();
+        p.play();
+        int result = p.getScore();
         int expResult = 77;
         assertEquals(expResult, result);
 

@@ -30,5 +30,8 @@ public abstract class Frames {
 
     public void setExtraValue(int value) {
     }
-
+    
+    public String getFrameType(){
+        return "GenericFrame";
+    }
 }
