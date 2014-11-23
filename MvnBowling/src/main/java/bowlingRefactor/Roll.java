@@ -5,22 +5,34 @@
  */
 package bowlingRefactor;
 
+import java.awt.Frame;
+import java.util.Scanner;
+
 /**
  *
  * @author Brindu
  */
 public class Roll {
+
+    private Pins pins;
     private int value;
     
     Roll(){
         value = -1;
+        pins = new Pins();
     }
-    
-    public void setValue(int value){
-        this.value = value;
-    }
-    
-    public int getValue(){
-        return this.value;
+
+    public void getValue(String filename,Scanner s, int value){
+        Boolean b = true;
+        pins.hasPins(filename, s, b);
+        
+        if(b){
+            pins.knockDown(filename, s);
+            this.pins.getValue(this.value);
+            value = this.value;
+        } else {
+            this.value = -1;
+            value = this.value;
+        }
     }
 }

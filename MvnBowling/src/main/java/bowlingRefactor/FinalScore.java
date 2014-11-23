@@ -5,24 +5,25 @@
  */
 package bowlingRefactor;
 
-import java.util.Scanner;
-
 /**
  *
  * @author Brindu
  */
-public class Pins {
-    int value = -2;
-
-    public void hasPins(String filename, Scanner s, Boolean b) {
-        b = s.hasNextInt();
-    }
-
-    public void knockDown(String filename, Scanner s) {
-        this.value = s.nextInt();
+public class FinalScore {
+    
+    private int value;
+    
+    public FinalScore(){
+        value = 0;
     }
     
-    public void getValue(int value){
+    public void setValue(int value){
+        this.value = value;
+    }
+    
+    public void getFinalScore(int value){
+        //System.out.println("The final score is: " + this.value);
         value = this.value;
     }
+    
 }

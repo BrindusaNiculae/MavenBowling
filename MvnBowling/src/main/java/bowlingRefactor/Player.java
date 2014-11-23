@@ -20,10 +20,6 @@ public class Player {
     }
 
     public void play() {
-        game.startGame();
-    }
-    
-    public int getScore(){
-        return game.getFinalScore().getScore();
+        game.playGame();
     }
 }

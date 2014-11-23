@@ -1,5 +1,6 @@
 package com.mycompany.app;
 
+import bowlingRefactor.FinalScore;
 import bowlingRefactor.Player;
 import java.io.FileNotFoundException;
 
@@ -8,16 +9,17 @@ import java.io.FileNotFoundException;
  *
  */
 public class App {
-
+  
     public static void main(String[] args) throws FileNotFoundException {
 
         for (int i = 1; i <= 17; i++) {
-            String filename = "game" + (i) + ".txt";
+            //String filename = "game" + (i) + ".txt";
+            String filename = "game3.txt";
             Player p = new Player(filename);
             p.play();
-            int rezult = p.getScore();
-            System.out.println("Scor final pt fisierul " + i
-                    + " :" + rezult);
+            FinalScore f = new FinalScore();
+            int x = 0;
+            f.getFinalScore(x);
         }
     }
 }

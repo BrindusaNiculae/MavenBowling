@@ -5,34 +5,44 @@
  */
 package bowlingRefactor;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Brindu
  */
 public class Score {
 
+    private ArrayList<PartialScore> partialScores;
     private int nrOfPerfectFrames;
-    private int finalScore;
+    private FinalScore finalScore;
 
     Score() {
+        partialScores = new ArrayList<PartialScore>(12);
         nrOfPerfectFrames = 0;
-        finalScore = 0;
+        finalScore = new FinalScore();
     }
 
-    public void setPerfect() {
-        nrOfPerfectFrames++;
-        // System.out.println("am ajuns aici: " + nrOfPerfectFrames);
+    public void addPartialScore(PartialScore ps) {
+        partialScores.add(ps);
     }
 
-    public void calculate(int value) {
-        finalScore += value;
-    }
+    public void getScoreFinalScore() {
 
-    public int getScore() {
-        if (nrOfPerfectFrames == 12) {
-            return 300;
+        int auxScore = 0;
+        for (PartialScore p : partialScores) {
+            p.addValue(auxScore);
+            boolean b = false;
+            p.getStrike(b);
+            if (b) {
+                nrOfPerfectFrames++;
+            }
         }
-        return finalScore;
+        if (nrOfPerfectFrames == 12) {
+            finalScore.setValue(300);
+        } else {
+            finalScore.setValue(auxScore);
+        }
     }
 
 }
