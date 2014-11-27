@@ -9,9 +9,15 @@ package bowlingRefactor;
  *
  * @author Brindu
  */
-public abstract class Frames {
+public class Frames {
 
-    protected int value;
+    private int value;
+    private int extraValue;
+
+    public Frames() {
+        this.value = 0;
+        this.extraValue = 0;
+    }
 
     public void setValue(int value) {
         this.value = value;
@@ -22,16 +28,11 @@ public abstract class Frames {
     }
 
     public void calculate(int value1, int value2) {
-        /*In functie de tipul frame-ului, value ca avea o valoare care depinde
-         -         de value1 si value2
-         -         */
-        this.setValue(0);
+        this.setValue(value1 + value2 + extraValue);
     }
 
     public void setExtraValue(int value) {
+        this.extraValue = value;
     }
-    
-    public String getFrameType(){
-        return "GenericFrame";
-    }
+
 }

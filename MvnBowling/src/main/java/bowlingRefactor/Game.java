@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class Game {
 
     private Pins pins;
-    private Roll roll1, roll2, nextRoll1, nextRoll2;
+    private Roll roll1, roll2, nextRoll1;
     private Frames frame;
     private PartialScore partialScore;
     private Score score;
@@ -30,7 +30,7 @@ public class Game {
         roll1 = new Roll();
         roll2 = new Roll();
         nextRoll1 = new Roll();
-        nextRoll2 = new Roll();
+        frame = new Frames();
         partialScore = new PartialScore();
         score = new Score();
         scanner = new Scanner(new File(filename));
@@ -42,8 +42,8 @@ public class Game {
         while (pins.hasPins(filename, scanner)) {
             readRoll(roll1, readR1);
             readRoll(roll2, readR2);
+
             if (roll2.getValue() >= 0) {
-                decideFrameType();
                 computeNext();
                 updateScore();
             }
@@ -62,19 +62,12 @@ public class Game {
         }
     }
 
-    private void decideFrameType() {
-        if (roll1.getValue() + roll2.getValue() < 10) {
-            frame = new Open();
-        } else {
-            frame = new StrikeOrSpare();
-        }
-    }
-
     private void computeNext() {
-        if (frame.getFrameType().equals("OPEN")) {
+        if (roll1.getValue() + roll2.getValue() < 10) {
             computeForOpen();
-        } else if (frame.getFrameType().equals("STRIKE||SPARE")) {
+        } else {
             readRoll(nextRoll1, true);
+
             frame.setExtraValue(nextRoll1.getValue());
             if (roll2.getValue() != 0 && roll1.getValue() + roll2.getValue() == 10) {
                 computeForSpare();
@@ -91,17 +84,20 @@ public class Game {
 
     private void computeForSpare() {
         frame.calculate(roll1.getValue(), roll2.getValue());
+        frame.setExtraValue(0);
         roll1.setValue(nextRoll1.getValue());
         roll2.setValue(-1);
-        nextRoll1.setValue(-1);
+        nextRoll1.setValue(0);
         setFlagsForSpare();
     }
 
     private void computeForStrike() {
         frame.calculate(roll1.getValue(), roll2.getValue());
+        frame.setExtraValue(0);
         score.setPerfect();
         roll1.setValue(roll2.getValue());
         roll2.setValue(nextRoll1.getValue());
+        nextRoll1.setValue(0);
         setFlagsForStrike();
     }
 
