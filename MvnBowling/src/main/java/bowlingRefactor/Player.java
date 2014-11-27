@@ -23,7 +23,11 @@ public class Player {
         game.startGame();
     }
     
-    public int getScore(){
-        return game.getFinalScore().getScore();
+    public void getScore(){
+        game.getFinalScore().getFinalScore();
+    }
+
+    public int getScoreForTest() {
+        return game.getFinalScore().getScoreForTest();
     }
 }

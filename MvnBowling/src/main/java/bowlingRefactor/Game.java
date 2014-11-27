@@ -16,9 +16,8 @@ import java.util.Scanner;
 public class Game {
 
     private Pins pins;
-    private Roll roll1, roll2, nextRoll1;
+    private Roll roll1, roll2, nextRoll;
     private Frames frame;
-    private PartialScore partialScore;
     private Score score;
     private String filename;
     private Scanner scanner;
@@ -29,9 +28,8 @@ public class Game {
         pins = new Pins();
         roll1 = new Roll();
         roll2 = new Roll();
-        nextRoll1 = new Roll();
+        nextRoll = new Roll();
         frame = new Frames();
-        partialScore = new PartialScore();
         score = new Score();
         scanner = new Scanner(new File(filename));
         readR1 = true;
@@ -42,18 +40,18 @@ public class Game {
         while (pins.hasPins(filename, scanner)) {
             readRoll(roll1, readR1);
             readRoll(roll2, readR2);
-
-            if (roll2.getValue() >= 0) {
-                computeNext();
-                updateScore();
-            }
+            roll2.playFrame(this);
         }
     }
 
-    public Score getFinalScore() {
-        return score;
+    public void playOn() {
+        roll1.computeNext(roll2, this);
+        updateScore();
     }
 
+    public Score getFinalScore(){
+       return score;
+    }
     private void readRoll(Roll roll, boolean readable) {
         if (pins.hasPins(filename, scanner) && readable) {
             roll.setValue(pins.knockDown(filename, scanner));
@@ -62,43 +60,41 @@ public class Game {
         }
     }
 
-    private void computeNext() {
-        if (roll1.getValue() + roll2.getValue() < 10) {
-            computeForOpen();
-        } else {
-            readRoll(nextRoll1, true);
-
-            frame.setExtraValue(nextRoll1.getValue());
-            if (roll2.getValue() != 0 && roll1.getValue() + roll2.getValue() == 10) {
-                computeForSpare();
-            } else {
-                computeForStrike();
-            }
-        }
-    }
-
-    private void computeForOpen() {
-        frame.calculate(roll1.getValue(), roll2.getValue());
+    public void computeForOpen() {        
+        roll1.calculate(roll2,new Roll(0), frame);
         setFlagsForOpen();
     }
 
-    private void computeForSpare() {
-        frame.calculate(roll1.getValue(), roll2.getValue());
+    private void computeCommons() {
+        readRoll(nextRoll, true);
+        nextRoll.setFrameExtraValue(frame);
+        roll1.calculate(roll2, nextRoll, frame);
         frame.setExtraValue(0);
-        roll1.setValue(nextRoll1.getValue());
-        roll2.setValue(-1);
-        nextRoll1.setValue(0);
+    }
+
+    public void computeForSpare() {
+        computeCommons();
+        updateForSpare();
         setFlagsForSpare();
     }
 
-    private void computeForStrike() {
-        frame.calculate(roll1.getValue(), roll2.getValue());
-        frame.setExtraValue(0);
+    public void computeForStrike() {
+        computeCommons();
         score.setPerfect();
-        roll1.setValue(roll2.getValue());
-        roll2.setValue(nextRoll1.getValue());
-        nextRoll1.setValue(0);
+        updateForStrike();
         setFlagsForStrike();
+    }
+
+    private void updateForSpare() {
+        roll1.setNewValue(nextRoll);
+        roll2.setValue(-1);
+        nextRoll.setValue(0);
+    }
+
+    private void updateForStrike() {
+        roll1.setNewValue(roll2);
+        roll2.setNewValue(nextRoll);
+        nextRoll.setValue(0);
     }
 
     private void setFlagsForOpen() {
@@ -117,7 +113,6 @@ public class Game {
     }
 
     private void updateScore() {
-        partialScore.setValue(frame.getValue());
-        score.calculate(partialScore.getValue());
+        frame.calculateScore(score);
     }
 }

@@ -19,6 +19,10 @@ public class Score {
         finalScore = 0;
     }
 
+    public Score(int i) {
+        finalScore = i;
+    }
+
     public void setPerfect() {
         nrOfPerfectFrames++;
         // System.out.println("am ajuns aici: " + nrOfPerfectFrames);
@@ -28,10 +32,15 @@ public class Score {
         finalScore += value;
     }
 
-    public int getScore() {
+    public void getFinalScore() {
         if (nrOfPerfectFrames == 12) {
-            return 300;
+            System.out.println("FinalScore = 300");
+        } else {
+            System.out.println("FinalScore = " + this.finalScore);
         }
+    }
+
+    public int getScoreForTest() {
         return finalScore;
     }
 

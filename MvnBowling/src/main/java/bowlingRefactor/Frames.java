@@ -27,12 +27,12 @@ public class Frames {
         return this.value;
     }
 
-    public void calculate(int value1, int value2) {
-        this.setValue(value1 + value2 + extraValue);
-    }
-
     public void setExtraValue(int value) {
         this.extraValue = value;
+    }
+
+    public void calculateScore(Score score) {
+        score.calculate(this.value);
     }
 
 }
