@@ -12,12 +12,12 @@ import java.util.Scanner;
  * @author Brindu
  */
 public class Pins {
-    
-    public boolean hasPins(String filename, Scanner s){
+
+    public boolean hasPins(String filename, Scanner s) {
         return s.hasNextInt();
     }
-    
-    public int knockDown(String filename, Scanner s){
+
+    public int knockDown(String filename, Scanner s) {
         return s.nextInt();
     }
 }

@@ -10,17 +10,18 @@ package bowlingRefactor;
  * @author Brindu
  */
 public class Roll {
+
     private int value;
-    
-    Roll(){
+
+    Roll() {
         value = -1;
     }
-    
-    public void setValue(int value){
+
+    public void setValue(int value) {
         this.value = value;
     }
-    
-    public int getValue(){
+
+    public int getValue() {
         return this.value;
     }
 }
