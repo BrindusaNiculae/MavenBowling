@@ -1,6 +1,7 @@
 package com.mycompany.app;
 
 import bowlingRefactor.Player;
+import bowlingRefactor.Score;
 import java.io.FileNotFoundException;
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -35,8 +36,7 @@ public class AppTest
         System.out.println("computeScoreFor1");
         Player p = new Player("game1.txt");
         p.play();
-
-        int result = p.getScore();
+       int result = p.getScoreForTest();
         int expResult = 20;
         assertEquals(expResult, result);
 
@@ -47,7 +47,7 @@ public class AppTest
         Player p = new Player("game2.txt");
         p.play();
 
-        int result = p.getScore();
+        int result = p.getScoreForTest();
         int expResult = 0;
         assertEquals(expResult, result);
 
@@ -58,7 +58,7 @@ public class AppTest
         Player p = new Player("game3.txt");
         p.play();
 
-        int result = p.getScore();
+        int result = p.getScoreForTest();
         int expResult = 300;
         assertEquals(expResult, result);
 
@@ -70,7 +70,7 @@ public class AppTest
         Player p = new Player("game4.txt");
         p.play();
 
-        int result = p.getScore();
+        int result = p.getScoreForTest();
         int expResult = 16;
         assertEquals(expResult, result);
 
@@ -82,7 +82,7 @@ public class AppTest
         Player p = new Player("game5.txt");
         p.play();
 
-        int result = p.getScore();
+        int result = p.getScoreForTest();
         int expResult = 24;
         assertEquals(expResult, result);
 
@@ -94,7 +94,7 @@ public class AppTest
         Player p = new Player("game6.txt");
         p.play();
 
-        int result = p.getScore();
+        int result = p.getScoreForTest();
         int expResult = 69;
         assertEquals(expResult, result);
 
@@ -106,7 +106,7 @@ public class AppTest
         Player p = new Player("game7.txt");
         p.play();
 
-        int result = p.getScore();
+        int result = p.getScoreForTest();
         int expResult = 79;
         assertEquals(expResult, result);
 
@@ -118,7 +118,7 @@ public class AppTest
         Player p = new Player("game8.txt");
         p.play();
 
-        int result = p.getScore();
+        int result = p.getScoreForTest();
         int expResult = 112;
         assertEquals(expResult, result);
 
@@ -130,7 +130,7 @@ public class AppTest
         Player p = new Player("game9.txt");
         p.play();
 
-        int result = p.getScore();
+        int result = p.getScoreForTest();
         int expResult = 104;
         assertEquals(expResult, result);
 
@@ -142,7 +142,7 @@ public class AppTest
         Player p = new Player("game10.txt");
         p.play();
 
-        int result = p.getScore();
+        int result = p.getScoreForTest();
         int expResult = 215;
         assertEquals(expResult, result);
 
@@ -154,7 +154,7 @@ public class AppTest
         Player p = new Player("game11.txt");
         p.play();
 
-        int result = p.getScore();
+        int result = p.getScoreForTest();
         int expResult = 243;
         assertEquals(expResult, result);
 
@@ -166,7 +166,7 @@ public class AppTest
         Player p = new Player("game12.txt");
         p.play();
 
-        int result = p.getScore();
+        int result = p.getScoreForTest();
         int expResult = 201;
         assertEquals(expResult, result);
 
@@ -177,7 +177,7 @@ public class AppTest
         Player p = new Player("game13.txt");
         p.play();
 
-        int result = p.getScore();
+        int result = p.getScoreForTest();
         int expResult = 143;
         assertEquals(expResult, result);
 
@@ -189,7 +189,7 @@ public class AppTest
         Player p = new Player("game14.txt");
         p.play();
 
-        int result = p.getScore();
+        int result = p.getScoreForTest();
         int expResult = 115;
         assertEquals(expResult, result);
 
@@ -200,7 +200,7 @@ public class AppTest
 
         Player p = new Player("game15.txt");
         p.play();
-        int result = p.getScore();
+        int result = p.getScoreForTest();
         int expResult = 159;
         assertEquals(expResult, result);
 
@@ -211,7 +211,7 @@ public class AppTest
 
         Player p = new Player("game16.txt");
         p.play();
-        int result = p.getScore();
+        int result = p.getScoreForTest();
         int expResult = 135;
         assertEquals(expResult, result);
 
@@ -221,7 +221,7 @@ public class AppTest
         System.out.println("computeScoreFor17");
         Player p = new Player("game17.txt");
         p.play();
-        int result = p.getScore();
+        int result = p.getScoreForTest();
         int expResult = 77;
         assertEquals(expResult, result);
 

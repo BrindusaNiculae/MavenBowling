@@ -15,9 +15,7 @@ public class App {
             String filename = "game" + (i) + ".txt";
             Player p = new Player(filename);
             p.play();
-            int rezult = p.getScore();
-            System.out.println("Scor final pt fisierul " + i
-                    + " :" + rezult);
+            p.getScore();
         }
     }
 }
