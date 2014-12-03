@@ -25,10 +25,6 @@ public class Player {
     }
 
     public void getScore() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        game.getFinalScore().getFinalScore();
-    }
-
-    public Score getScoreForTest() {
-        return game.getFinalScore().testScore();
+        game.getFinalScore();
     }
 }

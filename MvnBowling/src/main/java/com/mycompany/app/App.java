@@ -12,11 +12,18 @@ public class App {
 
     public static void main(String[] args) throws FileNotFoundException, InvocationTargetException, IllegalAccessException, NoSuchMethodException {
 
-        for (int i = 1; i <= 17; i++) {
+        for (int i = 1; i <= 18; i++) {
             String filename = "game" + (i) + ".txt";
             Player p = new Player(filename);
             p.play();
             p.getScore();
         }
+
+        String filename = "game13.txt";
+        Player p = new Player(filename);
+
+        p.play();
+
+        p.getScore();
     }
 }

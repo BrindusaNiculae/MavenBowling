@@ -88,8 +88,8 @@ public class Game {
         updateScore();
     }
 
-    public Score getFinalScore() {
-        return score;
+    public void getFinalScore() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        score.getFinalScore();
     }
 
     private void readRoll(Roll roll, boolean readable) throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
@@ -138,7 +138,6 @@ public class Game {
 
     public void computeForStrike() throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         computeCommons();
-        score.setPerfect();
         updateForStrike();
         setFlagsForStrike();
     }
