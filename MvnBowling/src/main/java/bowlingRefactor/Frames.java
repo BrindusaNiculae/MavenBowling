@@ -23,10 +23,6 @@ public class Frames {
         this.value = value;
     }
 
-    public int getValue() {
-        return this.value;
-    }
-
     public void setExtraValue(int value) {
         this.extraValue = value;
     }

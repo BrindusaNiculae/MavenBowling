@@ -7,6 +7,9 @@ package bowlingRefactor;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -15,7 +18,6 @@ import java.util.Scanner;
  */
 public class Game {
 
-    private Pins pins;
     private Roll roll1, roll2, nextRoll;
     private Frames frame;
     private Score score;
@@ -25,7 +27,6 @@ public class Game {
     private boolean readR2;
 
     Game(String filename) throws FileNotFoundException {
-        pins = new Pins();
         roll1 = new Roll();
         roll2 = new Roll();
         nextRoll = new Roll();
@@ -35,50 +36,107 @@ public class Game {
         readR1 = true;
         readR2 = true;
     }
-
-    public void startGame() {
-        while (pins.hasPins(filename, scanner)) {
-            readRoll(roll1, readR1);
-            readRoll(roll2, readR2);
-            roll2.playFrame(this);
+    private final HashMap<Boolean, String> readFileMethods = new HashMap<Boolean, String>() {
+        {
+            put(true, "readForTrue");
+            put(false, "readForFalse");
         }
+    };
+
+    private final HashMap<Boolean, String> readValueMethodsTrue = new HashMap<Boolean, String>() {
+        {
+            put(true, "setValueFromFile");
+            put(false, "doNothing");
+        }
+    };
+
+    private final HashMap<Boolean, String> readValueMethodsFalse = new HashMap<Boolean, String>() {
+        {
+            put(true, "setValueNeg");
+            put(false, "doNothing");
+        }
+    };
+
+    private final HashMap<Boolean, String> whileReplacer = new HashMap<Boolean, String>() {
+        {
+            put(true, "goOn");
+            put(false, "doNothing");
+        }
+    };
+
+    public void doNothing() {
     }
 
-    public void playOn() {
+    public void doNothing(Roll roll, boolean b) {
+    }
+
+    public void startGame() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        String methodName = whileReplacer.get(scanner.hasNext());
+        Method method = this.getClass().getMethod(methodName, null);
+        method.invoke(this, null);
+    }
+
+    public void goOn() throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        readRoll(roll1, readR1);
+        readRoll(roll2, readR2);
+        roll2.playFrame(this);
+        startGame();
+    }
+
+    public void playOn() throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         roll1.computeNext(roll2, this);
         updateScore();
     }
 
-    public Score getFinalScore(){
-       return score;
-    }
-    private void readRoll(Roll roll, boolean readable) {
-        if (pins.hasPins(filename, scanner) && readable) {
-            roll.setValue(pins.knockDown(filename, scanner));
-        } else if (readable) {
-            roll.setValue(-1);
-        }
+    public Score getFinalScore() {
+        return score;
     }
 
-    public void computeForOpen() {        
-        roll1.calculate(roll2,new Roll(0), frame);
+    private void readRoll(Roll roll, boolean readable) throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        String methodName = readFileMethods.get(scanner.hasNext());
+        Method method = this.getClass().getMethod(methodName, Roll.class, boolean.class);
+        method.invoke(this, roll, readable);
+    }
+
+    public void readForTrue(Roll roll, boolean readable) throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        String methodName = readValueMethodsTrue.get(readable);
+        Method method = this.getClass().getMethod(methodName, Roll.class, boolean.class);
+        method.invoke(this, roll, readable);
+    }
+
+    public void readForFalse(Roll roll, boolean readable) throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        String methodName = readValueMethodsFalse.get(readable);
+        Method method = this.getClass().getMethod(methodName, Roll.class, boolean.class);
+        method.invoke(this, roll, readable);
+    }
+
+    public void setValueFromFile(Roll roll, boolean readable) {
+        roll.setValue(scanner.nextInt());
+    }
+
+    public void setValueNeg(Roll roll, boolean readable) {
+        roll.setValue(-1);
+    }
+
+    public void computeForOpen() {
+        roll1.calculate(roll2, new Roll(0), frame);
         setFlagsForOpen();
     }
 
-    private void computeCommons() {
+    private void computeCommons() throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         readRoll(nextRoll, true);
         nextRoll.setFrameExtraValue(frame);
         roll1.calculate(roll2, nextRoll, frame);
         frame.setExtraValue(0);
     }
 
-    public void computeForSpare() {
+    public void computeForSpare() throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         computeCommons();
         updateForSpare();
         setFlagsForSpare();
     }
 
-    public void computeForStrike() {
+    public void computeForStrike() throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         computeCommons();
         score.setPerfect();
         updateForStrike();

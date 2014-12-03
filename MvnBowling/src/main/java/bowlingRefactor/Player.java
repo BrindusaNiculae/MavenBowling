@@ -6,6 +6,7 @@
 package bowlingRefactor;
 
 import java.io.FileNotFoundException;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  *
@@ -19,15 +20,15 @@ public class Player {
         game = new Game(filename);
     }
 
-    public void play() {
+    public void play() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         game.startGame();
     }
-    
-    public void getScore(){
+
+    public void getScore() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         game.getFinalScore().getFinalScore();
     }
 
-    public int getScoreForTest() {
-        return game.getFinalScore().getScoreForTest();
+    public Score getScoreForTest() {
+        return game.getFinalScore().testScore();
     }
 }
