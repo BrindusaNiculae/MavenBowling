@@ -18,12 +18,5 @@ public class App {
             p.play();
             p.getScore();
         }
-
-        String filename = "game13.txt";
-        Player p = new Player(filename);
-
-        p.play();
-
-        p.getScore();
     }
 }
