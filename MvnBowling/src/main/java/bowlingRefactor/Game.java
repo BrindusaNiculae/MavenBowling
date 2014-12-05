@@ -132,4 +132,8 @@ public class Game {
         partialScore.setValue(frame.getValue());
         score.calculate(partialScore.getValue());
     }
+
+    public void publishScore(ScoreHandler scoreHandler) {
+        score.publishTo(scoreHandler);
+    }
 }

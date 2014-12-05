@@ -2,6 +2,8 @@ package com.mycompany.app;
 
 import bowlingRefactor.Player;
 import java.io.FileNotFoundException;
+
+import bowlingRefactor.ScoreHandler;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -28,6 +30,8 @@ public class AppTest
         return new TestSuite(AppTest.class);
     }
 
+
+
     /**
      * Rigourous Test :-)
      */
@@ -36,10 +40,14 @@ public class AppTest
         Player p = new Player("game1.txt");
         p.play();
 
-        int result = p.getScore();
-        int expResult = 20;
-        assertEquals(expResult, result);
-
+        final int expResult = 20;
+        ScoreHandler scoreHandler = new ScoreHandler() {
+            @Override
+            public void publish(int score) {
+                assertEquals(expResult, score);;
+            }
+        };
+        p.publishScoreTo(scoreHandler);
     }
 
     public void testApp2() throws FileNotFoundException {

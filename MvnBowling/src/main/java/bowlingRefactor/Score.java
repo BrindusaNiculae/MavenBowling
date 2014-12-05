@@ -35,4 +35,7 @@ public class Score {
         return finalScore;
     }
 
+    public void publishTo(ScoreHandler scoreHandler) {
+        scoreHandler.publish(finalScore);
+    }
 }
