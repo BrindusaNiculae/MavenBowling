@@ -23,7 +23,7 @@ public class Player {
         game.startGame();
     }
     
-    public int getScore(){
-        return game.getFinalScore().getScore();
+    public void publishScoreTo(ScoreHandler scoreHandler) {
+        game.publishScore(scoreHandler);
     }
 }

@@ -2,6 +2,8 @@ package com.mycompany.app;
 
 import bowlingRefactor.Player;
 import java.io.FileNotFoundException;
+
+import bowlingRefactor.ScoreHandler;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -36,10 +38,8 @@ public class AppTest
         Player p = new Player("game1.txt");
         p.play();
 
-        int result = p.getScore();
-        int expResult = 20;
-        assertEquals(expResult, result);
-
+        final int expResult = 20;
+        p.publishScoreTo(new AssertScoreEquals(expResult));
     }
 
     public void testApp2() throws FileNotFoundException {
@@ -47,9 +47,8 @@ public class AppTest
         Player p = new Player("game2.txt");
         p.play();
 
-        int result = p.getScore();
         int expResult = 0;
-        assertEquals(expResult, result);
+        p.publishScoreTo(new AssertScoreEquals(expResult));
 
     }
 
@@ -58,10 +57,8 @@ public class AppTest
         Player p = new Player("game3.txt");
         p.play();
 
-        int result = p.getScore();
         int expResult = 300;
-        assertEquals(expResult, result);
-
+        p.publishScoreTo(new AssertScoreEquals(expResult));
     }
 
     public void testApp4() throws FileNotFoundException {
@@ -70,10 +67,8 @@ public class AppTest
         Player p = new Player("game4.txt");
         p.play();
 
-        int result = p.getScore();
         int expResult = 16;
-        assertEquals(expResult, result);
-
+        p.publishScoreTo(new AssertScoreEquals(expResult));
     }
 
     public void testApp5() throws FileNotFoundException {
@@ -82,10 +77,8 @@ public class AppTest
         Player p = new Player("game5.txt");
         p.play();
 
-        int result = p.getScore();
         int expResult = 24;
-        assertEquals(expResult, result);
-
+        p.publishScoreTo(new AssertScoreEquals(expResult));
     }
 
     public void testApp6() throws FileNotFoundException {
@@ -94,10 +87,8 @@ public class AppTest
         Player p = new Player("game6.txt");
         p.play();
 
-        int result = p.getScore();
         int expResult = 69;
-        assertEquals(expResult, result);
-
+        p.publishScoreTo(new AssertScoreEquals(expResult));
     }
 
     public void testApp7() throws FileNotFoundException {
@@ -106,10 +97,8 @@ public class AppTest
         Player p = new Player("game7.txt");
         p.play();
 
-        int result = p.getScore();
         int expResult = 79;
-        assertEquals(expResult, result);
-
+        p.publishScoreTo(new AssertScoreEquals(expResult));
     }
 
     public void testApp8() throws FileNotFoundException {
@@ -118,10 +107,8 @@ public class AppTest
         Player p = new Player("game8.txt");
         p.play();
 
-        int result = p.getScore();
         int expResult = 112;
-        assertEquals(expResult, result);
-
+        p.publishScoreTo(new AssertScoreEquals(expResult));
     }
 
     public void testApp9() throws FileNotFoundException {
@@ -130,10 +117,8 @@ public class AppTest
         Player p = new Player("game9.txt");
         p.play();
 
-        int result = p.getScore();
         int expResult = 104;
-        assertEquals(expResult, result);
-
+        p.publishScoreTo(new AssertScoreEquals(expResult));
     }
 
     public void testApp10() throws FileNotFoundException {
@@ -142,10 +127,8 @@ public class AppTest
         Player p = new Player("game10.txt");
         p.play();
 
-        int result = p.getScore();
         int expResult = 215;
-        assertEquals(expResult, result);
-
+        p.publishScoreTo(new AssertScoreEquals(expResult));
     }
 
     public void testApp11() throws FileNotFoundException {
@@ -154,10 +137,8 @@ public class AppTest
         Player p = new Player("game11.txt");
         p.play();
 
-        int result = p.getScore();
         int expResult = 243;
-        assertEquals(expResult, result);
-
+        p.publishScoreTo(new AssertScoreEquals(expResult));
     }
 
     public void testApp12() throws FileNotFoundException {
@@ -166,10 +147,8 @@ public class AppTest
         Player p = new Player("game12.txt");
         p.play();
 
-        int result = p.getScore();
         int expResult = 201;
-        assertEquals(expResult, result);
-
+        p.publishScoreTo(new AssertScoreEquals(expResult));
     }
 
     public void testApp13() throws FileNotFoundException {
@@ -177,10 +156,8 @@ public class AppTest
         Player p = new Player("game13.txt");
         p.play();
 
-        int result = p.getScore();
         int expResult = 143;
-        assertEquals(expResult, result);
-
+        p.publishScoreTo(new AssertScoreEquals(expResult));
     }
 
     public void testApp14() throws FileNotFoundException {
@@ -189,10 +166,8 @@ public class AppTest
         Player p = new Player("game14.txt");
         p.play();
 
-        int result = p.getScore();
         int expResult = 115;
-        assertEquals(expResult, result);
-
+        p.publishScoreTo(new AssertScoreEquals(expResult));
     }
 
     public void testApp15() throws FileNotFoundException {
@@ -200,10 +175,9 @@ public class AppTest
 
         Player p = new Player("game15.txt");
         p.play();
-        int result = p.getScore();
-        int expResult = 159;
-        assertEquals(expResult, result);
 
+        int expResult = 159;
+        p.publishScoreTo(new AssertScoreEquals(expResult));
     }
 
     public void testApp16() throws FileNotFoundException {
@@ -211,20 +185,33 @@ public class AppTest
 
         Player p = new Player("game16.txt");
         p.play();
-        int result = p.getScore();
-        int expResult = 135;
-        assertEquals(expResult, result);
 
+        int expResult = 135;
+        p.publishScoreTo(new AssertScoreEquals(expResult));
     }
 
     public void testApp17() throws FileNotFoundException {
         System.out.println("computeScoreFor17");
         Player p = new Player("game17.txt");
         p.play();
-        int result = p.getScore();
-        int expResult = 77;
-        assertEquals(expResult, result);
 
+        int expResult = 77;
+        p.publishScoreTo(new AssertScoreEquals(expResult));
     }
 
+    //~~~~~~~ Remember: Tell don't ask ~~~~~~
+
+
+    private static class AssertScoreEquals implements ScoreHandler {
+        private final int expResult;
+
+        public AssertScoreEquals(int expResult) {
+            this.expResult = expResult;
+        }
+
+        @Override
+        public void publish(int score) {
+            assertEquals(expResult, score);;
+        }
+    }
 }

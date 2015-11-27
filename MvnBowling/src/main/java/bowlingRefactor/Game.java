@@ -50,10 +50,6 @@ public class Game {
         }
     }
 
-    public Score getFinalScore() {
-        return score;
-    }
-
     private void readRoll(Roll roll, boolean readable) {
         if (pins.hasPins(filename, scanner) && readable) {
             roll.setValue(pins.knockDown(filename, scanner));
@@ -96,7 +92,6 @@ public class Game {
     }
 
     private void computeForStrike() {        
-        score.setPerfect();
         frame.calculate(roll1.getValue(), roll2.getValue());
         updateValuesForStrike();
         setFlagsForStrike();
@@ -130,6 +125,10 @@ public class Game {
 
     private void updateScore() {
         partialScore.setValue(frame.getValue());
-        score.calculate(partialScore.getValue());
+        score.add(partialScore.getValue());
+    }
+
+    public void publishScore(ScoreHandler scoreHandler) {
+        score.publishTo(scoreHandler);
     }
 }
